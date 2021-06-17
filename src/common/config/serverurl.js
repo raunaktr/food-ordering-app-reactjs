@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:8080/api/swagger-ui.html/";
+const baseUrl = "http://localhost:8080/api";
 let LOGIN_CUSTOMER = baseUrl + "/customer/login";
 let LOGOUT_CUSTOMER = baseUrl + "/customer/logout";
 let REGISTER_CUSTOMER = baseUrl + "/customer/signup";
