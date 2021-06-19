@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import "./Header.css";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import { Link } from "react-router-dom";
 import Modal from "react-modal";
 import {
     Button,
@@ -23,7 +22,8 @@ import {
     logoutCustomer,
 } from "../api/customer";
 import utility from "../api/utility";
-import { Link } from "react-router-dom";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import "./Header.css";
 
 const loginModalStyle = {
     content: {
@@ -82,8 +82,6 @@ class HeaderLoginComponent extends Component {
         };
     }
 
-    /// Field Binding/onOpenHandle/onCloseHandle Code starts here ///
-
     closeLoginModalHandler = () => {
         this.setState({ loginModalIsOpen: false });
         this.clearLoginForm();
@@ -98,32 +96,32 @@ class HeaderLoginComponent extends Component {
         this.setState({ tabValue: value });
     };
 
-    inputContactnoChangeHandler = (e) => {
-        this.setState({ loginContactno: e.target.value });
+    inputContactnoChangeHandler = (event) => {
+        this.setState({ loginContactno: event.target.value });
     };
 
-    inputPasswordChangeHandler = (e) => {
-        this.setState({ loginPassword: e.target.value });
+    inputPasswordChangeHandler = (event) => {
+        this.setState({ loginPassword: event.target.value });
     };
 
-    inputFirstNameChangeHandler = (e) => {
-        this.setState({ firstname: e.target.value });
+    inputFirstNameChangeHandler = (event) => {
+        this.setState({ firstname: event.target.value });
     };
 
-    inputLastNameChangeHandler = (e) => {
-        this.setState({ lastname: e.target.value });
+    inputLastNameChangeHandler = (event) => {
+        this.setState({ lastname: event.target.value });
     };
 
-    inputEmailChangeHandler = (e) => {
-        this.setState({ email: e.target.value });
+    inputEmailChangeHandler = (event) => {
+        this.setState({ email: event.target.value });
     };
 
-    inputRegisterPasswordChangeHandler = (e) => {
-        this.setState({ registerPassword: e.target.value });
+    inputRegisterPasswordChangeHandler = (event) => {
+        this.setState({ registerPassword: event.target.value });
     };
 
-    inputContactChangeHandler = (e) => {
-        this.setState({ contact: e.target.value });
+    inputContactChangeHandler = (event) => {
+        this.setState({ contact: event.target.value });
     };
 
     handleMessageBoxClose = () => {
@@ -133,17 +131,13 @@ class HeaderLoginComponent extends Component {
         });
     };
 
-    handleProfileMenuClose = (e) => {
+    handleProfileMenuClose = (event) => {
         this.setState({ anchorEl: null });
     };
 
-    handleProfileMenuOpen = (e) => {
-        this.setState({ anchorEl: e.currentTarget });
+    handleProfileMenuOpen = (event) => {
+        this.setState({ anchorEl: event.currentTarget });
     };
-
-    //** Field Binding/onOpenHandle/onCloseHandle Code ends here **//
-
-    /// Utility Method for Validation and etc Start Here ///
 
     contactnoCheck = () => {
         let contactno = this.state.contact.trim();
@@ -265,10 +259,6 @@ class HeaderLoginComponent extends Component {
         });
     };
 
-    //** Utility Method for Validation and etc End Here **//
-
-    /// Button onClick Method Start Here ///
-
     onRegisterRequestComplete = (code, response) => {
         if (code !== 201) {
             this.setState({
@@ -285,7 +275,7 @@ class HeaderLoginComponent extends Component {
         }
     };
 
-    registerClickHandler = (e) => {
+    registerClickHandler = (event) => {
         this.setState({
             regServerErrorMsgShow: "dispBlock",
             regServerErrorMsg: "",
@@ -359,7 +349,7 @@ class HeaderLoginComponent extends Component {
         }
     };
 
-    loginClickHandler = (e) => {
+    loginClickHandler = (event) => {
         let valid = true;
         this.setState({
             loginServerErrorMsgShow: "dispNone",
@@ -390,8 +380,6 @@ class HeaderLoginComponent extends Component {
             this.props.updateUserInfoState(null);
         });
     };
-
-    //** Button onClick Method End Here **//
 
     render() {
         return (

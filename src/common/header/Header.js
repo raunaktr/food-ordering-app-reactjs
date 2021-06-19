@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-import "./Header.css";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
+import { Link } from "react-router-dom";
+import { AppBar, Grid, Toolbar } from "@material-ui/core";
 import Fastfood from "@material-ui/icons/Fastfood";
 import HeaderSearchBar from "./HeaderSearchBar";
 import HeaderLogin from "./HeaderLogin";
-import Grid from "@material-ui/core/Grid";
-import { Link } from "react-router-dom";
+import "./Header.css";
 
 class Header extends Component {
     render() {

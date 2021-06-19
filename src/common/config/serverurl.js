@@ -1,4 +1,7 @@
 const baseUrl = "http://localhost:8080/api";
+/**
+ * @endpopints login, logout, signup, restaurant, address and payment
+ *  */
 let LOGIN_CUSTOMER = baseUrl + "/customer/login";
 let LOGOUT_CUSTOMER = baseUrl + "/customer/logout";
 let REGISTER_CUSTOMER = baseUrl + "/customer/signup";
@@ -10,6 +13,9 @@ let CHECKOUT_ADD_ADDRESS = baseUrl + "/address";
 let CHECKOUT_PAYMENT = baseUrl + "/payment";
 let CHECKOUT_SAVE_ORDER = baseUrl + "/order";
 
+/**
+ * @export endpoints
+ *  */
 export const LOGIN_CUSTOMER_URL = LOGIN_CUSTOMER;
 export const REGISTER_CUSTOMER_URL = REGISTER_CUSTOMER;
 export const LOGOUT_CUSTOMER_URL = LOGOUT_CUSTOMER;
