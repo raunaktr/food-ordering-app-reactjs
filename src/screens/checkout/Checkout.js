@@ -19,6 +19,7 @@ import {
     Divider,
     Grid,
     IconButton,
+    FilledInput,
     FormControl,
     FormControlLabel,
     FormLabel,
@@ -668,6 +669,25 @@ class Checkout extends Component {
         event.style.color = "green";
     };
 
+    getSubTotalEventHandler = () => {
+        let subTotal = 0;
+        this.state.cartItems.forEach((cartItem) => {
+            subTotal = subTotal + cartItem.totalAmount;
+        });
+        return subTotal;
+    };
+
+    getDiscountEventHandler = () => {
+        let discountAmount = 0;
+        if (this.state.coupon !== null) {
+            discountAmount =
+                (this.getSubTotalEventHandler() * this.state.coupon.percent) /
+                100;
+            return discountAmount;
+        }
+        return discountAmount;
+    };
+
     render() {
         const { classes } = this.props;
 
@@ -701,7 +721,9 @@ class Checkout extends Component {
                                                         this.state
                                                             .activeStep === 0
                                                     }
-                                                    onClick={this.backStepHandler}
+                                                    onClick={
+                                                        this.backStepHandler
+                                                    }
                                                     className={classes.button}
                                                 >
                                                     Back
@@ -709,7 +731,9 @@ class Checkout extends Component {
                                                 <Button
                                                     variant="contained"
                                                     color="primary"
-                                                    onClick={this.nextStepHandler}
+                                                    onClick={
+                                                        this.nextStepHandler
+                                                    }
                                                     className={classes.button}
                                                 >
                                                     {this.state.activeStep ===
@@ -835,6 +859,112 @@ class Checkout extends Component {
                                             )}
                                         </div>
                                     </FormControl>
+                                    <br />
+                                    <br />
+                                    <div className="panel-coupon">
+                                        <FormControl
+                                            className={
+                                                classes.formControlCoupon
+                                            }
+                                        >
+                                            <InputLabel htmlFor="coupon">
+                                                Coupon Code
+                                            </InputLabel>
+                                            <FilledInput
+                                                id="coupon"
+                                                className={classes.couponInput}
+                                                value={this.state.couponName}
+                                                onChange={
+                                                    this.couponNameHandler
+                                                }
+                                                placeholder="Ex: FLAT30"
+                                            />
+                                            <FormHelperText
+                                                className={
+                                                    this.state
+                                                        .couponNameRequired
+                                                }
+                                            >
+                                                <span className="red">
+                                                    required
+                                                </span>
+                                            </FormHelperText>
+                                            <FormHelperText
+                                                className={
+                                                    this.state
+                                                        .couponNameHelpText
+                                                }
+                                            >
+                                                <span className="red">
+                                                    invalid coupon
+                                                </span>
+                                            </FormHelperText>
+                                        </FormControl>
+                                        <Button
+                                            variant="contained"
+                                            color="default"
+                                            className={classes.applyButton}
+                                            onClick={
+                                                this.performApplyEventHandler
+                                            }
+                                            size="small"
+                                        >
+                                            APPLY
+                                        </Button>
+                                    </div>
+                                    <div className="panel-label-amount">
+                                        <Typography
+                                            variant="subtitle2"
+                                            component="p"
+                                            style={{ color: "grey" }}
+                                        >
+                                            Sub Total
+                                        </Typography>
+                                        <div className="amount">
+                                            <i
+                                                className="fa fa-inr"
+                                                aria-hidden="true"
+                                                style={{ color: "grey" }}
+                                            ></i>
+                                            <Typography
+                                                variant="subtitle1"
+                                                component="p"
+                                                style={{ color: "grey" }}
+                                                id="summary-net-amount"
+                                            >
+                                                {this.getSubTotalEventHandler().toFixed(
+                                                    2
+                                                )}
+                                            </Typography>
+                                        </div>
+                                    </div>
+                                    <div className="panel-label-amount">
+                                        <Typography
+                                            variant="subtitle2"
+                                            component="p"
+                                            className={classes.netAmount}
+                                            style={{ color: "grey" }}
+                                        >
+                                            Discount
+                                        </Typography>
+                                        <div className="amount">
+                                            <i
+                                                className="fa fa-inr"
+                                                aria-hidden="true"
+                                                style={{ color: "grey" }}
+                                            ></i>
+                                            <Typography
+                                                variant="subtitle1"
+                                                component="p"
+                                                style={{ color: "grey" }}
+                                                id="summary-net-amount"
+                                            >
+                                                {this.getDiscountEventHandler().toFixed(
+                                                    2
+                                                )}
+                                            </Typography>
+                                        </div>
+                                    </div>
                                     <br />
                                     <br />
                                     <Divider variant="fullWidth" />
